@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bestiario Aurora | Practica Semana 04</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-aurora">
+  <header class="site-header">
+    <nav class="navbar" aria-label="Navegacion principal">
+      <a class="brand" href="#simulador">
+        <span class="brand-mark">AP</span>
+        <span>Bestiario Aurora</span>
+      </a>
+      <div class="nav-links">
+        <a href="#simulador">Canvas</a>
+        <a href="#controles">Controles</a>
+        <a href="#evidencias">Evidencias</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">JavaScript, TypeScript, DOM y Canvas API</p>
+        <h1>Siluetas animales dibujadas con particulas.</h1>
+        <p>
+          Practica desarrollada en Vanilla TypeScript: cada punto busca una posicion objetivo
+          para formar animales de luz mientras se mide FPS y memoria del navegador.
+        </p>
+      </div>
+      <aside class="metrics-card" aria-label="Metricas de rendimiento">
+        <div class="metric-block">
+          <span id="fpsValue" class="metric-value">0</span>
+          <span>FPS estimados</span>
+        </div>
+        <div class="memory-grid">
+          <div>
+            <strong id="memoryUsed">--</strong>
+            <span>Memoria JS usada</span>
+          </div>
+          <div>
+            <strong id="memoryLimit">--</strong>
+            <span>Limite disponible</span>
+          </div>
+        </div>
+        <p id="memoryStatus" class="memory-status">Detectando memoria del navegador...</p>
+      </aside>
+    </section>
+
+    <section id="simulador" class="workspace">
+      <div class="canvas-shell">
+        <div class="canvas-toolbar">
+          <div>
+            <p class="eyebrow">Canvas 2D</p>
+            <h2>Bestiario de luz</h2>
+          </div>
+          <div class="status-group" aria-live="polite">
+            <span id="statusBadge" class="status-badge">Ejecutando</span>
+            <span id="particleCounter">80 particulas</span>
+          </div>
+        </div>
+        <canvas id="particleCanvas" width="960" height="540">
+          Tu navegador no soporta Canvas.
+        </canvas>
+        <div class="canvas-meta" aria-live="polite">
+          <span><i class="signal-dot"></i><strong id="pointerStatus">Explora el lienzo</strong></span>
+          <span>Interaccion: mueve el puntero sobre las particulas</span>
+        </div>
+      </div>
+
+      <aside id="controles" class="control-panel">
+        <div class="panel-heading">
+          <p class="eyebrow">Controles DOM</p>
+          <h2>Parametros</h2>
+        </div>
+
+        <label class="field">
+          <span>Numero de particulas <output id="particleAmountValue" for="particleAmount">80</output></span>
+          <input id="particleAmount" type="range" min="20" max="160" value="80" step="5">
+        </label>
+
+        <label class="field">
+          <span>Velocidad <output id="speedAmountValue" for="speedAmount">90</output></span>
+          <input id="speedAmount" type="range" min="20" max="220" value="90" step="10">
+        </label>
+
+        <label class="field">
+          <span>Tamaño de particulas <output id="particleSizeValue" for="particleSize">5</output></span>
+          <input id="particleSize" type="range" min="2" max="12" value="5" step="1">
+        </label>
+
+        <label class="field">
+          <span>Figura animal</span>
+          <select id="shapeSelect">
+            <option value="hummingbird">Colibri andino</option>
+            <option value="whale">Ballena luminosa</option>
+            <option value="fox">Zorro andino</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Paleta visual</span>
+          <select id="paletteSelect">
+            <option value="aurora">Aurora</option>
+            <option value="ocean">Oceano</option>
+            <option value="sunset">Atardecer</option>
+          </select>
+        </label>
+
+        <label class="toggle-field">
+          <input id="trailToggle" type="checkbox" checked>
+          <span>Activar estela suave</span>
+        </label>
+
+        <div class="button-row" id="actionButtons">
+          <button class="icon-button" type="button" data-action="pause" aria-label="Pausar o reanudar animacion">Pausar</button>
+          <button class="icon-button secondary" type="button" data-action="reset" aria-label="Reiniciar particulas">Reiniciar</button>
+        </div>
+
+        <p id="validationMessage" class="validation-message" aria-live="polite"></p>
+      </aside>
+    </section>
+
+    <section id="evidencias" class="evidence-section">
+      <div>
+        <p class="eyebrow">Requisitos cubiertos</p>
+        <h2>Checklist de la guia</h2>
+      </div>
+      <ul class="checklist">
+        <li>IIFE para aislar el scope global.</li>
+        <li>Closure para conservar estado entre frames.</li>
+        <li>Handlers con funciones flecha.</li>
+        <li>querySelector, addEventListener y classList.toggle.</li>
+        <li>Canvas 2D con arc, fillRect, stroke y requestAnimationFrame.</li>
+        <li>Selector DOM para cambiar la figura animal generada por particulas.</li>
+        <li>Delta time para movimiento uniforme y FPS counter.</li>
+        <li>Cancelacion de requestAnimationFrame al pausar o cerrar.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>UNCP - Desarrollo de Aplicaciones Web - Guia Practica Semana 04</p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
